@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Artist } from './interfaces/artist.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateArtistDto } from './dto/artist.dto';
-import { TracksService } from '../Tracks/traks.service';
+import { TracksService } from '../Tracks/tracks.service';
 
 @Injectable()
 export class ArtistsService {
