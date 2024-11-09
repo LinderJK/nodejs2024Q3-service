@@ -1,21 +1,18 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
   HttpCode,
-  HttpException,
   HttpStatus,
-  NotFoundException,
   Param,
   ParseUUIDPipe,
   Post,
   Put,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { User } from '../interfaces/user.interface';
-import { PasswordDto, CreateUserDto, UpdatePasswordDto } from '../dto/user.dto';
+import { User } from './interfaces/user.interface';
+import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
 
 @Controller('user')
 export class UsersController {
