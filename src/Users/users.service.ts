@@ -1,13 +1,12 @@
 import {
-  BadRequestException,
   ForbiddenException,
   HttpException,
   HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { User } from '../interfaces/user.interface';
-import { UpdatePasswordDto, CreateUserDto } from '../dto/user.dto';
+import { User } from './interfaces/user.interface';
+import { UpdatePasswordDto, CreateUserDto } from './dto/user.dto';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
