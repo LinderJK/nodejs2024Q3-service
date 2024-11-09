@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TracksController } from './tracks.controller';
-import { TracksService } from './traks.service';
+import { TracksService } from './tracks.service';
 
 @Module({
   imports: [],
