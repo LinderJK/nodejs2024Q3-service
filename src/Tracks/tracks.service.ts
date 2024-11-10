@@ -44,10 +44,17 @@ export class TracksService {
     }
     this.tracks.splice(trackIndex, 1);
   }
-  updateArtistTracks(artistId: string, newArtistId: string | null): void {
+  updateArtistTracks(artistId: string): void {
     this.tracks.forEach((track) => {
       if (track.artistId === artistId) {
-        track.artistId = newArtistId;
+        track.artistId = null;
+      }
+    });
+  }
+  updateAlbumTracks(albumId: string): void {
+    this.tracks.forEach((track) => {
+      if (track.albumId === albumId) {
+        track.albumId = null;
       }
     });
   }
