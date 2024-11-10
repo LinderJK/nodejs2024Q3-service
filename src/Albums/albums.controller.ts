@@ -8,7 +8,6 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
-  BadRequestException,
 } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { ParseUUIDPipe } from '@nestjs/common';

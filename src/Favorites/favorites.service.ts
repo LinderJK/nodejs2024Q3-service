@@ -1,7 +1,6 @@
 import {
   Injectable,
   NotFoundException,
-  BadRequestException,
   UnprocessableEntityException,
   Inject,
   forwardRef,
@@ -9,7 +8,6 @@ import {
 import { TracksService } from '../Tracks/tracks.service';
 import { AlbumsService } from '../Albums/albums.service';
 import { ArtistsService } from '../Artists/artists.service';
-import { FavoritesResponse } from './interfaces/favorites.interface';
 import { Track } from '../Tracks/interfaces/track.interface';
 import { Album } from '../Albums/interfaces/album.interface';
 import { Artist } from '../Artists/interfaces/artist.interface';
@@ -51,9 +49,6 @@ export class FavoritesService {
     const track = this.tracksService
       .findAll()
       .find((track) => track.id === trackId);
-    // if (this.favoriteTracks.some((trackId) => track.id === trackId)) {
-    //   throw new BadRequestException('Track is already in favorites');
-    // }
     if (!track) {
       throw new UnprocessableEntityException('Artist not found');
     }
@@ -75,9 +70,6 @@ export class FavoritesService {
     const album = this.albumService
       .getAlbums()
       .find((album) => album.id === albumId);
-    // if (this.favoriteAlbums.some((albumId) => album.id === albumId)) {
-    //   throw new BadRequestException('Album is already in favorites');
-    // }
     if (!album) {
       throw new UnprocessableEntityException('Artist not found');
     }
@@ -100,9 +92,6 @@ export class FavoritesService {
     const artist = this.artistsService
       .findAll()
       .find((artist) => artist.id === artistId);
-    // if (this.favoriteArtists.some((artistId) => artist.id === artistId)) {
-    //   throw new BadRequestException('Artist is already in favorites');
-    // }
     if (!artist) {
       throw new UnprocessableEntityException('Artist not found');
     }
