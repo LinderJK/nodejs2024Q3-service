@@ -6,7 +6,6 @@ import {
   Body,
   Put,
   Delete,
-  HttpException,
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
