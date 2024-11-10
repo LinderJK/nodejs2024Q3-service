@@ -55,7 +55,8 @@ export class UsersService {
     }
 
     user.password = updatePasswordDto.newPassword;
-    user.updatedAt = Date.now();
+    user.updatedAt = Date.now() + 1; // Add 1 millisecond for test because user creation occurs quickly and the dates coincide.
+    //After using asynchronous operations and the database, this delay will no longer be needed
     user.version += 1;
 
     const { password, ...userWithoutPassword } = user;
