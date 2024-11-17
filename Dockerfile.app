@@ -10,5 +10,7 @@ COPY . .
 
 EXPOSE 4000
 
+RUN npx prisma generate
+
 # Запуск приложения
 CMD ["npm", "run", "start:dev"]
