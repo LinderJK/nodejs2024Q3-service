@@ -20,7 +20,7 @@ export class TracksController {
 
   @Get()
   async getAllTracks(): Promise<Track[]> {
-    return this.tracksService.findAll();
+    return await this.tracksService.findAll();
   }
 
   @Get(':id')
@@ -31,12 +31,12 @@ export class TracksController {
     )
     id: string,
   ): Promise<Track> {
-    return this.tracksService.findById(id);
+    return await this.tracksService.findById(id);
   }
 
   @Post()
   async createTrack(@Body() createTrackDto: CreateTrackDto): Promise<Track> {
-    return this.tracksService.create(createTrackDto);
+    return await this.tracksService.create(createTrackDto);
   }
 
   @Put(':id')
@@ -48,7 +48,7 @@ export class TracksController {
     id: string,
     @Body() updatedTrack: CreateTrackDto,
   ): Promise<Track> {
-    return this.tracksService.update(id, updatedTrack);
+    return await this.tracksService.update(id, updatedTrack);
   }
 
   @Delete(':id')
@@ -60,6 +60,6 @@ export class TracksController {
     )
     id: string,
   ): Promise<void> {
-    this.tracksService.delete(id);
+    await this.tracksService.delete(id);
   }
 }
