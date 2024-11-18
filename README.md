@@ -73,3 +73,8 @@ docker exec nest_app npm run format
 docker exec nest_app npm run audit
 ```
 
+## DockerHub link
+```
+https://hub.docker.com/r/linderjke/nodejs2024q3-service_app
+```
+
