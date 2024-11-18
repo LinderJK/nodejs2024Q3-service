@@ -11,6 +11,7 @@
     "audit": "npm audit",
     "migrate:dev": "prisma migrate dev --skip-seed",
     "migrate:prod": "prisma generate && prisma migrate deploy",
+    "migrate:add-favorites": "prisma migrate dev --name add_tables",
     "migrate:reset": "prisma migrate reset --skip-seed",
     "studio": "prisma studio",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
