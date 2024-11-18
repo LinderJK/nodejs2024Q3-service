@@ -16,12 +16,12 @@ export class FavoritesController {
 
   @Get()
   async getFavorites() {
-    return this.favoritesService.getFavorites();
+    return await this.favoritesService.getFavorites();
   }
 
   @Post('track/:id')
   async addTrackToFavorites(@Param('id', new ParseUUIDPipe()) trackId: string) {
-    return this.favoritesService.addTrackToFavorites(trackId);
+    return await this.favoritesService.addTrackToFavorites(trackId);
   }
 
   @Delete('track/:id')
@@ -33,12 +33,12 @@ export class FavoritesController {
     )
     trackId: string,
   ) {
-    this.favoritesService.removeTrackFromFavorites(trackId);
+    await this.favoritesService.removeTrackFromFavorites(trackId);
   }
 
   @Post('album/:id')
   async addAlbumToFavorites(@Param('id', new ParseUUIDPipe()) albumId: string) {
-    return this.favoritesService.addAlbumToFavorites(albumId);
+    return await this.favoritesService.addAlbumToFavorites(albumId);
   }
 
   @Delete('album/:id')
@@ -46,14 +46,14 @@ export class FavoritesController {
   async removeAlbumFromFavorites(
     @Param('id', new ParseUUIDPipe()) albumId: string,
   ) {
-    this.favoritesService.removeAlbumFromFavorites(albumId);
+    await this.favoritesService.removeAlbumFromFavorites(albumId);
   }
 
   @Post('artist/:id')
   async addArtistToFavorites(
     @Param('id', new ParseUUIDPipe()) artistId: string,
   ) {
-    return this.favoritesService.addArtistToFavorites(artistId);
+    return await this.favoritesService.addArtistToFavorites(artistId);
   }
 
   @Delete('artist/:id')
@@ -61,6 +61,6 @@ export class FavoritesController {
   async removeArtistFromFavorites(
     @Param('id', new ParseUUIDPipe()) artistId: string,
   ) {
-    this.favoritesService.removeArtistFromFavorites(artistId);
+    await this.favoritesService.removeArtistFromFavorites(artistId);
   }
 }
