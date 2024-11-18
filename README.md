@@ -8,19 +8,24 @@
 ## Downloading
 
 ```
-git clone {repository URL}
+git clone https://github.com/LinderJK/nodejs2024Q3-service.git
 ```
 
+## Switch on dev branch (task part 2)
+
+```
+git checkout feat/docker-postgres
+```
 ## Installing NPM modules
 
 ```
 npm install --legacy-peer-deps
 ```
 
-## Change ENV
+## Create ENV file
 
-In root directory create `.env` file and add `PORT=4000`.
 For example see `.env.example`.
+You can copy `.env.example` and rename to `.env`
 
 ## Running application
 
@@ -28,26 +33,43 @@ For example see `.env.example`.
 npm start
 ```
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/api/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
+Important! If you don't have a local server with Postgres installed, the application will throw a connection error.
 
-## Testing
+According to the task, everything needs to be run in a container.
 
-After application running open new terminal and enter:
+## Running application in docker
 
-For first part of task run all tests without authorization
+1. Install Docker on your computer.
+2. Build the application.
 
 ```
-npm run test
+docker-compose up --build
 ```
 
+After the message `Server started on port 4000`, the application will be running.
+
+## Start tests
+
+Open new terminal and use command
+
+```
+docker exec nest_app npm run test
+```
+
+P.S. Due to the specifics of the tests, one of the tests may fail on the first run, as the `favorites` table is created during the first operation. Please rerun the tests.
 ### Auto-fix and format
 
 ```
-npm run lint
+docker exec nest_app npm run lint
 ```
 
 ```
-npm run format
+docker exec nest_app npm run format
 ```
+
+## Script for vulnerabilities scanning
+
+```
+docker exec nest_app npm run audit
+```
+
