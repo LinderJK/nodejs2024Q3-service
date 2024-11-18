@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+123213123
+docker-compose.yml
+*.log
+*.tmp
