@@ -20,7 +20,7 @@ export class ArtistsController {
 
   @Get()
   async getAllArtists(): Promise<Artist[]> {
-    return this.artistsService.findAll();
+    return await this.artistsService.findAll();
   }
   @Get(':id')
   async getArtistById(
@@ -30,14 +30,14 @@ export class ArtistsController {
     )
     id: string,
   ): Promise<Artist> {
-    return this.artistsService.findById(id);
+    return await this.artistsService.findById(id);
   }
 
   @Post()
   async createArtist(
     @Body() createArtistDto: CreateArtistDto,
   ): Promise<Artist> {
-    return this.artistsService.create(createArtistDto);
+    return await this.artistsService.create(createArtistDto);
   }
 
   @Put(':id')
@@ -49,7 +49,7 @@ export class ArtistsController {
     id: string,
     @Body() createArtistDto: CreateArtistDto,
   ): Promise<Artist> {
-    return this.artistsService.update(id, createArtistDto);
+    return await this.artistsService.update(id, createArtistDto);
   }
 
   @Delete(':id')
@@ -61,6 +61,6 @@ export class ArtistsController {
     )
     id: string,
   ): Promise<void> {
-    this.artistsService.delete(id);
+    await this.artistsService.delete(id);
   }
 }
