@@ -19,7 +19,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   @Get()
   async getUsers(): Promise<User[]> {
-    return this.usersService.getUsers();
+    return await this.usersService.getUsers();
   }
   @Get(':id')
   async getUserById(
@@ -29,13 +29,13 @@ export class UsersController {
     )
     id: string,
   ): Promise<User> {
-    return this.usersService.getUserById(id);
+    return await this.usersService.getUserById(id);
   }
   @Post()
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<Partial<User>> {
-    return this.usersService.createUser(createUserDto);
+    return await this.usersService.createUser(createUserDto);
   }
   @Put(':id')
   async updatePasswordUser(
@@ -46,7 +46,7 @@ export class UsersController {
     id: string,
     @Body() updatePasswordDto: UpdatePasswordDto,
   ): Promise<Partial<User>> {
-    return this.usersService.updateUserPassword(id, updatePasswordDto);
+    return await this.usersService.updateUserPassword(id, updatePasswordDto);
   }
   @Delete(':id')
   @HttpCode(204)
@@ -57,6 +57,6 @@ export class UsersController {
     )
     id: string,
   ) {
-    this.usersService.deleteUser(id);
+    await this.usersService.deleteUser(id);
   }
 }
