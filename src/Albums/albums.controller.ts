@@ -20,19 +20,19 @@ export class AlbumsController {
 
   @Get()
   async getAlbums(): Promise<Album[]> {
-    return this.albumsService.getAlbums();
+    return await this.albumsService.getAlbums();
   }
 
   @Get(':id')
   async getAlbumById(
     @Param('id', new ParseUUIDPipe()) id: string,
   ): Promise<Album> {
-    return this.albumsService.getAlbumById(id);
+    return await this.albumsService.getAlbumById(id);
   }
 
   @Post()
   async createAlbum(@Body() createAlbumDto: CreateAlbumDto): Promise<Album> {
-    return this.albumsService.createAlbum(createAlbumDto);
+    return await this.albumsService.createAlbum(createAlbumDto);
   }
 
   @Put(':id')
@@ -40,7 +40,7 @@ export class AlbumsController {
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() createAlbumDto: CreateAlbumDto,
   ): Promise<Album> {
-    return this.albumsService.updateAlbum(id, createAlbumDto);
+    return await this.albumsService.updateAlbum(id, createAlbumDto);
   }
 
   @Delete(':id')
@@ -48,6 +48,6 @@ export class AlbumsController {
   async deleteAlbum(
     @Param('id', new ParseUUIDPipe()) id: string,
   ): Promise<void> {
-    this.albumsService.deleteAlbum(id);
+    await this.albumsService.deleteAlbum(id);
   }
 }
