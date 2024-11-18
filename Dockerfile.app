@@ -10,7 +10,5 @@ COPY . .
 
 EXPOSE 4000
 
-RUN npx prisma generate
-
 # Запуск приложения
-CMD ["npm", "run", "start:dev"]
+CMD ["sh", "-c", "npm run migrate:prod && npm run start:dev"]
