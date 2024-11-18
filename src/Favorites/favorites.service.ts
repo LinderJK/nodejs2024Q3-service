@@ -32,11 +32,6 @@ export class FavoritesService {
     if (!favorite) {
       throw new NotFoundException('No favorites found');
     }
-    console.log({
-      artists: favorite.artists.map((artistFavorite) => artistFavorite.artist),
-      albums: favorite.albums.map((albumFavorite) => albumFavorite.album),
-      tracks: favorite.tracks.map((trackFavorite) => trackFavorite.track),
-    });
 
     return {
       artists: favorite.artists.map((artistFavorite) => artistFavorite.artist),

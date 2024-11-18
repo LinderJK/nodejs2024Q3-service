@@ -41,7 +41,6 @@ export class UsersService {
 
   async createUser(createUserDto: CreateUserDto): Promise<Partial<User>> {
     const timestamp = new Date();
-    console.log(timestamp);
     const newUser = await this.prisma.user.create({
       data: {
         ...createUserDto,
