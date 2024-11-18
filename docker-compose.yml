@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile.app
     container_name: nest_app
-    restart: on-failure
+    restart: always
     ports:
       - ${PORT}:${PORT}
     env_file:
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile.db
     container_name: postgres_db
-    restart: on-failure
+    restart: always
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
     env_file:
