@@ -6,6 +6,7 @@ import { ArtistsModule } from './Artists/artists.module';
 import { TracksModule } from './Tracks/tracks.module';
 import { AlbumsModule } from './Albums/albums.module';
 import { FavoritesModule } from './Favorites/favorites.module';
+import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { PrismaModule } from './prisma/prisma.module';
     AlbumsModule,
     FavoritesModule,
     PrismaModule,
+    ConfigModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
