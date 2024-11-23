@@ -7,8 +7,8 @@ import {
 } from '@nestjs/common';
 import { User } from './interfaces/user.interface';
 import { UpdatePasswordDto, CreateUserDto } from './dto/user.dto';
-import { v4 as uuidv4 } from 'uuid';
 import { PrismaService } from 'src/prisma/prisma.service';
+import saltAndHashPassword from '../utils/saltAndHashPassword';
 
 @Injectable()
 export class UsersService {
@@ -41,9 +41,13 @@ export class UsersService {
 
   async createUser(createUserDto: CreateUserDto): Promise<Partial<User>> {
     const timestamp = new Date();
+    const passwordSalt = await saltAndHashPassword.hashPassword(
+      createUserDto.password,
+    );
     const newUser = await this.prisma.user.create({
       data: {
         ...createUserDto,
+        password: passwordSalt,
         createdAt: timestamp,
         updatedAt: timestamp,
         version: 1,
@@ -68,15 +72,22 @@ export class UsersService {
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
-
-    if (updatePasswordDto.oldPassword !== user.password) {
-      throw new ForbiddenException('Incorrect old password');
+    const passwordMatch = await saltAndHashPassword.comparePassword(
+      updatePasswordDto.oldPassword,
+      user.password,
+    );
+    if (!passwordMatch) {
+      throw new ForbiddenException('Old password is incorrect');
     }
+
+    const passwordSalt = await saltAndHashPassword.hashPassword(
+      updatePasswordDto.newPassword,
+    );
     const timestamp: Date = new Date();
     const updatedUser = await this.prisma.user.update({
       where: { id },
       data: {
-        password: updatePasswordDto.newPassword,
+        password: passwordSalt,
         updatedAt: timestamp,
         version: user.version + 1,
       },
@@ -102,5 +113,21 @@ export class UsersService {
     await this.prisma.user.delete({
       where: { id },
     });
+  }
+
+  async getUserByLogin(login: string): Promise<User> {
+    const user = await this.prisma.user.findFirst({
+      where: { login },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return {
+      ...user,
+      createdAt: new Date(user.createdAt).getTime(),
+      updatedAt: new Date(user.updatedAt).getTime(),
+    };
   }
 }
